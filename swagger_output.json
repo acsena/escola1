@@ -1,0 +1,175 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "TESTE PRATICO GENERATION",
+    "description": "API construida para o processo seletivo da turma de cloud"
+  },
+  "host": "localhost:3000",
+  "basePath": "/",
+  "schemes": [
+    "http"
+  ],
+  "paths": {
+    "/alunos": {
+      "get": {
+        "description": "Rota para listar os alunos",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "post": {
+        "description": "Rota para cadastro de alunos",
+        "requestBody": {
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno" 
+              },
+              "examples": {
+                "aluno":{
+                  "value": {
+                    "nome_aluno": "Barack Obama",
+                    "idade_aluno":40 ,
+                    "nota_pri_semestre": 9,
+                    "nota_seg_semestre": 6,
+                    "nome_prof": "Jhon Biden",
+                    "num_sala": 18
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/alunos/{id}": {
+      "get": {
+        "description": "Rota para listar um aluno",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "put": {
+        "description": "Rota para atualizar cadastro de aluno",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "requestBody": {
+          "content":{
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Aluno" 
+              },
+              "examples": {
+                "aluno":{
+                  "value": {
+                    "nome_aluno": "Bill Clinton",
+                    "idade_aluno":60 ,
+                    "nota_pri_semestre": 8,
+                    "nota_seg_semestre": 4,
+                    "nome_prof": "Jhon Biden",
+                    "num_sala": 18
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type":"object",
+                  "$ref":"#/components/schemas/Aluno"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      },
+      "delete": {
+        "description": "Rota para deletar aluno",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Aluno": {
+        "type": "object",
+        "properties": {
+          "nome_aluno": {
+            "type": "string"
+          },
+          "idade_aluno": {
+            "type": "number"
+          },
+          "inota_pri_semestre": {
+            "type": "number"
+          },
+          "nota_seg_semestre": {
+            "type": "number"
+          },
+          "nome_prof": {
+            "type": "string"
+          },
+          "num_sala": {
+            "type": "number"
+          }
+          
+        }
+      }
+    }
+  }
+}
